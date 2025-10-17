@@ -6,4 +6,9 @@
 #include <unistd.h>
 #include <string.h>
 
+void main(){
+    
+    return 0;
+    
+}
 
