@@ -15,6 +15,12 @@ typedef struct _conf_maestre{
     ConfMaestre* routes;
 }ConfMaestre;
 
+typedef struct _object{
+    char name[100];
+    int amount;
+    float weight;
+}Object;
+
 ConfMaestre getMaestreConfig(char* filePath){
     int fd = open(filePath, O_RDONLY);
     ConfMaestre conf;
@@ -39,5 +45,13 @@ ConfMaestre getMaestreConfig(char* filePath){
     }
     close(fd);
     return conf;
+}
+
+// Lectura del fitxer binari d'inventari
+Object* getInventoryFromFile(char* filePath, int* size){
+    int fd = open(filePath, O_RDONLY);
+    Object* inventory = (Object*) fromBinaryToArray(fd, size, sizeof(Object));
+    close(fd);
+    return inventory;
 }
 
